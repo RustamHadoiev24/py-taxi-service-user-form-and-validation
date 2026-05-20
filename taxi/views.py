@@ -29,7 +29,6 @@ def index(request):
     return render(request, "taxi/index.html", context=context)
 
 
-
 class ManufacturerListView(LoginRequiredMixin, generic.ListView):
     model = Manufacturer
     context_object_name = "manufacturer_list"
@@ -53,7 +52,6 @@ class ManufacturerDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Manufacturer
     success_url = reverse_lazy("taxi:manufacturer-list")
     template_name = "taxi/manufacturer_confirm_delete.html"
-
 
 
 class CarListView(LoginRequiredMixin, generic.ListView):
@@ -97,7 +95,6 @@ class CarDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Car
     success_url = reverse_lazy("taxi:car-list")
     template_name = "taxi/car_confirm_delete.html"
-
 
 
 class DriverListView(LoginRequiredMixin, generic.ListView):
