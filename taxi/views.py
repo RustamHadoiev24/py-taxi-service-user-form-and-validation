@@ -29,6 +29,7 @@ def index(request):
     return render(request, "taxi/index.html", context=context)
 
 
+
 class ManufacturerListView(LoginRequiredMixin, generic.ListView):
     model = Manufacturer
     context_object_name = "manufacturer_list"
@@ -54,6 +55,7 @@ class ManufacturerDeleteView(LoginRequiredMixin, generic.DeleteView):
     template_name = "taxi/manufacturer_confirm_delete.html"
 
 
+
 class CarListView(LoginRequiredMixin, generic.ListView):
     model = Car
     paginate_by = 5
@@ -65,6 +67,7 @@ class CarDetailView(LoginRequiredMixin, generic.DetailView):
     queryset = Car.objects.prefetch_related("drivers__cars")
 
     def post(self, request, *args, **kwargs):
+        """Toggle driver assignment for a car."""
         car = self.get_object()
         driver = request.user
 
@@ -94,6 +97,7 @@ class CarDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Car
     success_url = reverse_lazy("taxi:car-list")
     template_name = "taxi/car_confirm_delete.html"
+
 
 
 class DriverListView(LoginRequiredMixin, generic.ListView):
